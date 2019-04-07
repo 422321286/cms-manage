@@ -49,20 +49,15 @@ export default {
     startLogin() {
       // 在 事件中对表单再次校验 (格式)
 
-      this.$refs.ruleForm.validate(valid => {
+      this.$refs.ruleForm.validate(async valid => {
         // 如果校验不成功 中止
         if (!valid) {
           return;
         }
-        // 校验成功
-        // console.log("开始登录");
-        axios
-          .post("login", this.ruleForm)
-          .then(res => {
-            console.log(res);
-            if (res.data.meta.status === 200) {
+      let res = await axios.post('login',this.ruleForm)
+                 if (res.data.meta.status === 200) {
               localStorage.setItem('token',res.data.data.token)
-              //1. 登录成功提示
+               //1. 登录成功提示
               this.$message({
                 message: res.data.meta.msg,
                 type: "success",
@@ -78,7 +73,32 @@ export default {
                 duration: 800
               });
             }
-          });
+
+        // 校验成功
+        // console.log("开始登录");
+        // axios
+        //   .post("login", this.ruleForm)
+        //   .then(res => {
+        //     console.log(res);
+        //     if (res.data.meta.status === 200) {
+        //       localStorage.setItem('token',res.data.data.token)
+        //       //1. 登录成功提示
+        //       this.$message({
+        //         message: res.data.meta.msg,
+        //         type: "success",
+        //         duration: 800
+        //       });
+
+        //       //2. 跳转到home页面 (编程式导航)
+        //       this.$router.push("/home");
+        //     } else {
+        //       this.$message({
+        //         message: res.data.meta.msg,
+        //         type: "error",
+        //         duration: 800
+        //       });
+        //     }
+          // });
       });
     },
     // 重置

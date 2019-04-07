@@ -43,7 +43,7 @@ router.beforeEach((to, from, next) => {
   } else {
     // 其他页面
     // 判断有没有登录过
-    let token = localStorage.getItem('token')
+    const token = localStorage.getItem('token')
     // 判断token有没有值
 
     if (token) {

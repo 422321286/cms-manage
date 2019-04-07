@@ -1,15 +1,8 @@
-<template>
-  <div>
-    roles
-  </div>
+<template src="./roles.html">
 </template>
 
-<script>
-export default {
-
-}
+<script src='./roles.js'>
 </script>
 
-<style lang="less" scoped>
-
+<style lang="less" scoped src="./roles.less">
 </style>
