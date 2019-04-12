@@ -19,7 +19,7 @@ const router = new Router({
       component: () => import('../components/home/home.vue'),
       children: [
         {
-          path: '/users',
+          path: '/users/:page?',
           component: () => import('../components/users/users.vue')
         },
         {
@@ -29,6 +29,18 @@ const router = new Router({
         {
           path: '/rights',
           component: () => import('../components/rights/rights.vue')
+        },
+        {
+          path: '/goods',
+          component: () => import('../components/goods/goods.vue')
+        },
+        {
+          path: '/categories',
+          component: () => import('../components/categories/categories.vue')
+        },
+        {
+          path: '/goods-add',
+          component: () => import('../components/goods-add/goods-add.vue')
         }
       ]
     }

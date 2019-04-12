@@ -6,11 +6,14 @@ import router from './router/router'
 import axios from 'axios'
 // 引入 element
 import ElementUI from 'element-ui'
-import 'element-ui/lib/theme-chalk/index.css'
+// import 'element-ui/lib/theme-chalk/index.css'
 // 引入公共样式
 import './assets/css/commen.css'
+// 引用树形组件
+import ElTreeGrid from 'element-tree-grid'
 // 安装一下  element-ui
 Vue.use(ElementUI)
+Vue.component(ElTreeGrid.name, ElTreeGrid)
 // Vue.use(axios)
 Vue.prototype.$axios = axios
 axios.defaults.baseURL = 'http://localhost:8888/api/private/v1/'

@@ -80,7 +80,10 @@ export default {
     }
   },
   created () {
-    this.loadUsersList()
+    // 获取当前页  刷新不变页
+    const curpage = this.$route.params.page
+    console.log(curpage)
+    this.loadUsersList(curpage)
     this.loadRolesList()
   },
   methods: {
@@ -116,6 +119,8 @@ export default {
     // 改变页数
     changePage (curPage) {
       // console.log('页码改变了',curPage);
+      // 通过编程式导航跳转
+      this.$router.push('/users/' + curPage)
       this.loadUsersList(curPage, this.searchText)
     },
     // 开始查询
@@ -271,7 +276,9 @@ export default {
       const res = await this.$axios.get(`users/${row.id}`)
       console.log(res.data.data.rid)
       this.assignRoleForm.username = row.username
-      this.assignRoleForm.rid = res.data.data.rid === -1 ? '' : res.data.data.rid
+      // -1 的时候表示没有分配过角色；
+      this.assignRoleForm.rid =
+        res.data.data.rid === -1 ? '' : res.data.data.rid
       this.assignRoleForm.id = row.id
       this.dialogAssignRoleVisible = true
     },
@@ -285,7 +292,7 @@ export default {
       // 关闭对话框
       this.dialogAssignRoleVisible = false
       // 刷新数据
-      this.loadUsersList()
+      this.loadUsersList(this.pagenum)
       // 3. 提示成功
       this.$message({
         type: 'success',
